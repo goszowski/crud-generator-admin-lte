@@ -1,0 +1,27 @@
+{
+    "name": "goszowski/crud-generator-admin-lte",
+    "license": "MIT",
+    "description": "Laravel 5 CRUD Generator for AdminLTE",
+    "keywords": [
+        "laravel",
+        "crud",
+        "crud generator",
+        "laravel crud generator",
+        "admin lte"
+    ],
+    "authors": [
+        {
+            "name": "Jarosław Goszowski",
+            "email": "goszowski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Goszowski\\CrudGeneratorAdminLte\\": "src/"
+        }
+    }
+}
