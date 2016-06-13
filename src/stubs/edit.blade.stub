@@ -1,32 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-    <h1>Edit %%modelName%% {{ $%%crudNameSingular%%->%%primaryKey%% }}</h1>
-
-    {!! Form::model($%%crudNameSingular%%, [
-        'method' => 'PATCH',
-        'url' => ['/%%routeGroup%%%%viewName%%', $%%crudNameSingular%%->%%primaryKey%%],
-        'class' => 'form-horizontal'
-    ]) !!}
-
-    %%formFieldsHtml%%
-
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
-        </div>
+<section class="content">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{trans('%%viewName%%.Edit')}} %%modelName%% #{{ $%%crudNameSingular%%->%%primaryKey%% }}</h3>
+      <div class="box-tools">
+        {!! Form::open([
+            'method'=>'DELETE',
+            'url' => ['%%routeGroup%%%%crudName%%', $%%crudNameSingular%%->%%primaryKey%%],
+            'style' => 'display:inline'
+        ]) !!}
+            {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
+                    'type' => 'submit',
+                    'class' => 'btn btn-danger btn-sm',
+                    'title' => trans('%%viewName%%.Delete'). ' %%modelName%%',
+                    'onclick'=>'return confirm("'.trans('%%viewName%%.Confirm delete?').'")'
+            ));!!}
+        {!! Form::close() !!}
+      </div>
     </div>
-    {!! Form::close() !!}
+    <div class="box-body">
+      @if ($errors->any())
+          <ul class="alert alert-danger">
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      @endif
+      {!! Form::model($%%crudNameSingular%%, [
+          'method' => 'PATCH',
+          'url' => ['/%%routeGroup%%%%viewName%%', $%%crudNameSingular%%->%%primaryKey%%],
+          'class' => 'form-horizontal'
+      ]) !!}
+        %%formFieldsHtml%%
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> {{trans("%%viewName%%.Update")}}</button>
+                <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" class="btn btn-default"><i class="fa fa-reply" aria-hidden="true"></i> {{trans("%%viewName%%.Cancel")}}</a>
+            </div>
+        </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</section>
 
-    @if ($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
-</div>
 @endsection

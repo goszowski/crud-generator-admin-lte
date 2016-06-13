@@ -1,6 +1,6 @@
 <?php
 
-namespace Appzcoder\CrudGenerator\Commands;
+namespace Goszowski\CrudGeneratorAdminLte\Commands;
 
 use File;
 use Illuminate\Console\Command;
@@ -371,8 +371,8 @@ class CrudViewCommand extends Command
         $formGroup =
             <<<EOD
             <div class="form-group {{ \$errors->has('%1\$s') ? 'has-error' : ''}}">
-                {!! Form::label('%1\$s', %2\$s, ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
+                {!! Form::label('%1\$s', %2\$s, ['class' => 'col-md-2 control-label']) !!}
+                <div class="col-md-10">
                     %3\$s
                     {!! \$errors->first('%1\$s', '<p class="help-block">:message</p>') !!}
                 </div>
@@ -474,12 +474,7 @@ EOD;
     {
         $field =
             <<<EOD
-            <div class="checkbox">
-                <label>{!! Form::radio('%1\$s', '1') !!} Yes</label>
-            </div>
-            <div class="checkbox">
-                <label>{!! Form::radio('%1\$s', '0', true) !!} No</label>
-            </div>
+            <label class="minimal control-label">{!! Form::checkbox('%1\$s', '1') !!} Yes</label>
 EOD;
 
         return $this->wrapField($item, sprintf($field, $item['name']));

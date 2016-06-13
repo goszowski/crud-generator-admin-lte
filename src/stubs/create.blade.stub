@@ -1,29 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
 
-    <h1>Create New %%modelName%%</h1>
-    <hr/>
-
-    {!! Form::open(['url' => '/%%routeGroup%%%%viewName%%', 'class' => 'form-horizontal']) !!}
-
-    %%formFieldsHtml%%
-
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
-        </div>
+<section class="content">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">{{trans('%%viewName%%.Create New')}} %%modelName%%</h3>
     </div>
-    {!! Form::close() !!}
-
-    @if ($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
-</div>
+    <div class="box-body">
+      @if ($errors->any())
+          <ul class="alert alert-danger">
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      @endif
+      {!! Form::open(['url' => '/%%routeGroup%%%%viewName%%', 'class' => 'form-horizontal']) !!}
+        %%formFieldsHtml%%
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> {{trans("%%viewName%%.Create")}}</button>
+                <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" class="btn btn-default"><i class="fa fa-reply" aria-hidden="true"></i> {{trans("%%viewName%%.Cancel")}}</a>
+            </div>
+        </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</section>
 @endsection

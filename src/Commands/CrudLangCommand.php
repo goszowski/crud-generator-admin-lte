@@ -1,6 +1,6 @@
 <?php
 
-namespace Appzcoder\CrudGenerator\Commands;
+namespace Goszowski\CrudGeneratorAdminLte\Commands;
 
 use File;
 use Illuminate\Console\Command;
@@ -96,7 +96,7 @@ class CrudLangCommand extends Command
             }
 
             $langFile = $this->viewDirectoryPath . 'lang.stub';
-            $newLangFile = $path . $this->crudName . '.php';
+            $newLangFile = $path . strtolower($this->crudName) . '.php';
             if (!File::copy($langFile, $newLangFile)) {
                 echo "failed to copy $langFile...\n";
             } else {
@@ -117,6 +117,7 @@ class CrudLangCommand extends Command
     private function templateVars($newLangFile)
     {
         $messages = [];
+        $messages[] = "'$this->crudName' => '$this->crudName'";
         foreach($this->formFields as $field) {
             $index = $field['name'];
             $text = ucwords(strtolower(str_replace('_', ' ', $index)));

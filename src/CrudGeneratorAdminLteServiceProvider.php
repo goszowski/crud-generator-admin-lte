@@ -21,7 +21,7 @@ class CrudGeneratorAdminLteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/crudgenerator-admin-lte.php' => config_path('crudgenerator_admin_lte.php'),
+            __DIR__ . '/../config/crudgenerator_admin_lte.php' => config_path('crudgenerator_admin_lte.php'),
         ]);
 
         $this->publishes([

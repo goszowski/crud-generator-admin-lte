@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-    <h1>%%modelName%% {{ $%%crudNameSingular%%->%%primaryKey%% }}
-        <a href="{{ url('%%routeGroup%%%%viewName%%/' . $%%crudNameSingular%%->%%primaryKey%% . '/edit') }}" class="btn btn-primary btn-xs" title="Edit %%modelName%%"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">{{trans('%%viewName%%.%%crudNameCap%%')}} #{{ $%%crudNameSingular%%->%%primaryKey%% }}</h3>
+      <div class="box-tools">
+        <a href="{{ url('%%routeGroup%%%%viewName%%/' . $%%crudNameSingular%%->%%primaryKey%% . '/edit') }}" class="btn btn-default btn-sm" title="Edit %%modelName%%"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
         {!! Form::open([
             'method'=>'DELETE',
             'url' => ['%%routeGroup%%%%crudName%%', $%%crudNameSingular%%->%%primaryKey%%],
@@ -12,22 +14,27 @@
         ]) !!}
             {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
                     'type' => 'submit',
-                    'class' => 'btn btn-danger btn-xs',
-                    'title' => 'Delete %%modelName%%',
-                    'onclick'=>'return confirm("Confirm delete?")'
+                    'class' => 'btn btn-danger btn-sm',
+                    'title' => trans('%%viewName%%.Delete'). ' %%modelName%%',
+                    'onclick'=>'return confirm("'.trans('%%viewName%%.Confirm delete?').'")'
             ));!!}
         {!! Form::close() !!}
-    </h1>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <tbody>
-                <tr>
-                    <th>ID</th><td>{{ $%%crudNameSingular%%->%%primaryKey%% }}</td>
-                </tr>
-                %%formBodyHtmlForShowView%%
-            </tbody>
-        </table>
+      </div>
     </div>
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>ID</th><td>{{ $%%crudNameSingular%%->%%primaryKey%% }}</td>
+            </tr>
+            %%formBodyHtmlForShowView%%
+        </tbody>
+      </table>
+    </div>
+    <div class="box-footer clearfix">
+      <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" class="btn btn-default"><i class="fa fa-reply" aria-hidden="true"></i> {{trans("%%viewName%%.Back")}}</a>
+    </div>
+  </div>
+</section>
 
-</div>
 @endsection
