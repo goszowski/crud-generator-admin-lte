@@ -65,7 +65,7 @@ CRUD Generator for AdminLTE
     ```
 Note: You should have configured database for this operation.
 
-6. Copy the Admin LTE folder to public path and rename to "admin-lte"
+6. Copy the Admin LTE folder to public path and rename it to "admin-lte"
 
 
 ## Commands
