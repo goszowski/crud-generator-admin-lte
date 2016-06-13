@@ -13,14 +13,17 @@ CRUD Generator for AdminLTE
 
 ## Installation
 
-1. Run
+1. Edit your project's composer.json file to require "goszowski/crud-generator-admin-lte"
     ```
     "require": {
       "goszowski/crud-generator-admin-lte": "dev-master",
     }
     ```
-
-2. Add service provider to **/config/app.php** file.
+2. Run 
+    ```
+    composer update
+    ```
+3. Add service provider to **/config/app.php** file.
     ```php
     'providers' => [
         ...
@@ -28,7 +31,7 @@ CRUD Generator for AdminLTE
         Goszowski\CrudGeneratorAdminLte\CrudGeneratorAdminLteServiceProvider::class,
     ],
     ```
-3. Install **laravelcollective/html** package for form & html.
+4. Install **laravelcollective/html** package for form & html.
     * Run
 
     ```
