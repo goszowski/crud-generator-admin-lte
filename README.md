@@ -179,6 +179,3 @@ You can customize the generator's stub files/templates to achieve your need.
     ```
 3. From the directory **/resources/crud-generator/** you can modify or customize the stub files.
 
-##Author
-
-[Sohel Amin](http://www.sohelamin.com)
