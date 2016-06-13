@@ -14,6 +14,7 @@ CRUD Generator for AdminLTE
 ## Installation
 
 1. Edit your project's composer.json file to require "goszowski/crud-generator-admin-lte"
+
     ```
     "require": {
       "goszowski/crud-generator-admin-lte": "dev-master",
