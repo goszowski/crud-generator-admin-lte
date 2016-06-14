@@ -9,7 +9,7 @@ use DummyRootNamespace{{modelName}};
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
-use Validator;
+use Illuminate\Support\Facades\Input;
 
 class DummyClass extends Controller
 {
@@ -18,10 +18,20 @@ class DummyClass extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index($order_by='id', $order_direct='asc')
     {
-        ${{crudName}} = {{modelName}}::paginate(15);
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        $order_by         = Input::get('order_by')
+                          ? Input::get('order_by')
+                          : $order_by;
+
+        $order_direct     = Input::get('order_direct')
+                          ? Input::get('order_direct')
+                          : $order_direct;
+
+        ${{crudName}} = {{modelName}}::orderBy($order_by, $order_direct)->paginate(15);
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'))
+                ->with('order_by',      $order_by)
+                ->with('order_direct',  $order_direct);
     }
 
     /**

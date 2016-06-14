@@ -235,8 +235,13 @@ class CrudViewCommand extends Command
             if ($this->option('localize') == 'yes') {
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
-            $this->formHeadingHtml .= '<th> ' . $label . ' </th>';
-            $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
+            $this->formHeadingHtml .= '<th> ' . $label . '
+              <div class="btn-group pull-right">
+                <a href="{{url(\'/'.$this->crudName.'?order_by='.$field.'&order_direct=desc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'desc\') disabled @endif"><i class="fa fa-caret-up"></i></a>
+                <a href="{{url(\'/'.$this->crudName.'?order_by='.$field.'&order_direct=asc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'asc\') disabled @endif"><i class="fa fa-caret-down"></i></a>
+              </div>
+            </th>';
+            $this->formBodyHtml .= '<td @if($order_by == \''.$field.'\') class="active" @endif>{{ $item->' . $field . ' }}</td>';
             $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
 
             $i++;
@@ -474,6 +479,7 @@ EOD;
     {
         $field =
             <<<EOD
+            {!! Form::hidden('%1\$s', '0') !!}
             <label class="minimal control-label">{!! Form::checkbox('%1\$s', '1') !!} Yes</label>
 EOD;
 

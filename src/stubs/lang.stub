@@ -13,5 +13,6 @@ return [
     'View' => 'View',
     'Empty' => 'Empty',
     'This section is empty' => 'This section is empty',
+    'Actions' => 'Actions',
     %%messages%%,
 ];

@@ -12,17 +12,26 @@
     </div>
 
     @if(count($%%crudName%%))
-    <div class="box-body no-padding">
-      <table class="table table-hover">
-        <tbody>
+    <div class="box-body">
+      <table class="table table-bordered table-hover">
+        <thead>
           <tr>
-              <th>#</th>%%formHeadingHtml%%<th class="text-right" style="min-width: 150px;">Actions</th>
+              <th style="min-width: 120px;">
+                #
+                <div class="btn-group pull-right">
+                  <a href="{{url('/%%routeGroup%%%%viewName%%?order_by=id&order_direct=desc')}}" class="btn btn-default btn-xs @if($order_by=='id' and $order_direct=='desc') disabled @endif"><i class="fa fa-caret-up"></i></a>
+                  <a href="{{url('/%%routeGroup%%%%viewName%%?order_by=id&order_direct=asc')}}" class="btn btn-default btn-xs @if($order_by=='id' and $order_direct=='asc') disabled @endif"><i class="fa fa-caret-down"></i></a>
+                </div>
+              </th>
+              %%formHeadingHtml%%
+              <th class="text-right" style="min-width: 150px;">{{trans('%%viewName%%.Actions')}}</th>
           </tr>
-        {{-- */$x=0;/* --}}
+        </thead>
+        <tbody>
+
         @foreach($%%crudName%% as $item)
-            {{-- */$x++;/* --}}
             <tr>
-                <td>{{ $x }}</td>
+                <td @if($order_by == 'id') class="active" @endif>{{ $item->id }}</td>
                 %%formBodyHtml%%
                 <td class="text-right">
                   <div class="btn-group">
@@ -45,8 +54,6 @@
                       </li>
                     </ul>
                   </div>
-
-
 
                 </td>
             </tr>
