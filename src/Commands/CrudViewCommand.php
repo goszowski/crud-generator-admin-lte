@@ -237,8 +237,8 @@ class CrudViewCommand extends Command
             }
             $this->formHeadingHtml .= '<th> ' . $label . '
               <div class="btn-group pull-right">
-                <a href="{{url(\'/'.$this->crudName.'?order_by='.$field.'&order_direct=desc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'desc\') disabled @endif"><i class="fa fa-caret-up"></i></a>
-                <a href="{{url(\'/'.$this->crudName.'?order_by='.$field.'&order_direct=asc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'asc\') disabled @endif"><i class="fa fa-caret-down"></i></a>
+                <a href="{{url(\'/'.$this->routeGroup.$this->crudName.'?order_by='.$field.'&order_direct=desc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'desc\') disabled @endif"><i class="fa fa-caret-up"></i></a>
+                <a href="{{url(\'/'.$this->routeGroup.$this->crudName.'?order_by='.$field.'&order_direct=asc\')}}" class="btn btn-default btn-xs @if($order_by==\''.$field.'\' and $order_direct==\'asc\') disabled @endif"><i class="fa fa-caret-down"></i></a>
               </div>
             </th>';
             $this->formBodyHtml .= '<td @if($order_by == \''.$field.'\') class="active" @endif>{{ $item->' . $field . ' }}</td>';
