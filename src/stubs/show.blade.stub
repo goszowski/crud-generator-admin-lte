@@ -17,7 +17,7 @@
                     'class' => 'btn btn-danger btn-sm',
                     'title' => trans('%%viewName%%.Delete'). ' %%modelName%%',
                     'onclick'=>'return confirm("'.trans('%%viewName%%.Confirm delete?').'")'
-            ));!!}
+            )) !!}
         {!! Form::close() !!}
       </div>
     </div>
